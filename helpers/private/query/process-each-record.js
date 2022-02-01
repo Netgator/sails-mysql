@@ -38,7 +38,7 @@ module.exports = function processEachRecord(options) {
   }
 
   // Key the collections by identity instead of column name
-  var collections = _.reduce(options.orm.collections, function(memo, val) {
+  var collections = _.reduce(options.orm.collections, function (memo, val) {
     memo[val.identity] = val;
     return memo;
   }, {});
@@ -50,7 +50,7 @@ module.exports = function processEachRecord(options) {
     // Check if the record and the model contain any boolean types.
     // Because MySQL returns these as binary (0, 1) they must be
     // transformed into true/false values.
-    _.each(WLModel.definition, function checkAttributes(attrDef) {
+    _.each(WLModel?.definition || {}, function checkAttributes(attrDef) {
       var columnName = attrDef.columnName;
 
       if (attrDef.type === 'boolean' && _.has(record, columnName)) {

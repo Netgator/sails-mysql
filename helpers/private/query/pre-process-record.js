@@ -66,7 +66,7 @@ module.exports = function preProcessRecord(options) {
       throw new Error('Consistency violation: Incoming new records in a s3q should never necessitate deep iteration!  If you are seeing this error, it is probably because of a bug in this adapter, or in Waterline core.');
     }
 
-    _.each(WLModel.definition, function checkAttributes(attrDef) {
+    _.each(WLModel?.definition || {}, function checkAttributes(attrDef) {
       var columnName = attrDef.columnName;
 
       // JSON stringify the values provided for any `type: 'json'` attributes
